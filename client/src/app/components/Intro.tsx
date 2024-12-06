@@ -2,14 +2,18 @@
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { CustomEase } from 'gsap/CustomEase'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { Howl } from 'howler'
+import Logotype from '../svg/Voussi/Logotype'
+import Glitch1 from '../svg/Voussi/Glitches/Glitch1'
+import Glitch2 from '../svg/Voussi/Glitches/Glitch2'
+import Glitch3 from '../svg/Voussi/Glitches/Glitch3'
+import { StepComponentProps } from '../types/interfaces'
 
 gsap.registerPlugin(useGSAP)
 gsap.registerPlugin(CustomEase)
 
-const Intro = (props: { showComponent: (component: string) => void }) => {
-  const { showComponent } = props
+const Intro = ({ setCurrentComponent }: StepComponentProps) => {
 
   const container = useRef(null)
 
@@ -17,60 +21,80 @@ const Intro = (props: { showComponent: (component: string) => void }) => {
     src: ['/sounds/notification.mp3']
   })
 
-  const play = () => {
-    sound.play()
-  }
-
-  // play()
+  CustomEase.create("shoot3", "M0,0 C0,0 0.251,0.044 0.315,0.165 0.378,0.279 0.338,0.807 0.435,0.904 0.523,0.992 1,1 1,1 ")
 
   useGSAP(
     () => {
-      gsap.fromTo('.box', { x: -50 }, { x: 0, duration: 7, ease: 'power4.out', delay: 1 })
       const tl = gsap.timeline()
 
-      // Step 1
-      tl.fromTo('.v',  { x: -10 },  { x: 0, duration: .6, ease: 'power4.out', opacity: 1, delay: 0 }, 1)
-      tl.fromTo('.o',  { x: -15  }, { x: 2.5, duration: .8, ease: 'power4.out', opacity: 1, delay: .075 }, 1)
-      tl.fromTo('.o',  { x: -15  }, { x: 5, duration: 1, ease: 'power4.out', opacity: 1, delay: .075 }, 1)
-      tl.fromTo('.u',  { x: -20  }, { x: 7.5, duration: 1.2, ease: 'power4.out', opacity: 1, delay: .15 }, 1)
-      tl.fromTo('.s',  { x: -25  }, { x: 10, duration: 1.4, ease: 'power4.out', opacity: 1, delay: .275 }, 1)
-      tl.fromTo('.s2', { x: -30  }, { x: 12.5, duration: 1.6, ease: 'power4.out', opacity: 1, delay: .35 }, 1)
-      tl.fromTo('.i',  { x: -35  }, { x: 15, duration: 1.8, ease: 'power4.out', opacity: 1, delay: .475 }, 1)
+      // Appear
+      tl.to('.logotype', { duration: 5, opacity: 1, ease: 'power4.out' }, .5)
+
+      // Glitch 1
+      tl.to('.logotype', { opacity: 0, duration: .05 }, 1.5)
+      tl.to('.glitch1', { opacity: 1, duration: .05 }, 1.5)
       
-      // Step 2
-      tl.to('.v',  { x: 50, ease: 'shoot3', duration: 2 }, 3)
-      tl.to('.o',  { x: 30, ease: 'shoot3', duration: 2 }, 3)
-      tl.to('.u',  { x: 10, ease: 'shoot3', duration: 2 }, 3)
-      tl.to('.s',  { x: -10, ease: 'shoot3', duration: 2 }, 3)
-      tl.to('.s2', { x: -30, ease: 'shoot3', duration: 2 }, 3)
-      tl.to('.i',  { x: -50, ease: 'shoot3', duration: 2 }, 3)
+      tl.to('.glitch1', { opacity: 0, duration: .05 }, 1.6)
+      tl.to('.logotype', { opacity: 1, duration: .05 }, 1.6)
 
-      tl.to('.shadow', { y: 12.5, duration: 3 }, 1)
-      tl.to('.shadow', { y: 30, duration: 2 }, 3.5)
+      // Glitch 2
+      tl.to('.logotype', { opacity: 0, duration: .05 }, 2.6)
+      tl.to('.glitch2', { opacity: 1, duration: .05 }, 2.6)
 
-      tl.to('.box', { opacity: 0, duration: 1 })
-      tl.to('.box', { display: 'none' })
-      tl.to('.shadow', { display: 'none' })
+      tl.to('.glitch2', { opacity: 0, duration: .05 }, 2.7)
+      tl.to('.logotype', { opacity: 1, duration: .05 }, 2.7)
+
+      // Glitch 3
+      tl.to('.logotype', { opacity: 0, duration: .05 }, 3.1)
+      tl.to('.glitch3', { opacity: 1, duration: .05 }, 3.1)
+      
+      tl.to('.glitch3', { opacity: 0, duration: .05 }, 3.2)
+      tl.to('.logotype', { opacity: 1, duration: .05 }, 3.2)
+
+      // Glitch 4
+      tl.to('.logotype', { opacity: 0, duration: .05 }, 3.5)
+      tl.to('.glitch2', { opacity: 1, duration: .05 }, 3.5)
+
+      tl.to('.glitch2', { opacity: 0, duration: .05 }, 3.6)
+      tl.to('.logotype', { opacity: 1, duration: .05 }, 3.6)
+
+      // Glitch 5
+      tl.to('.logotype', { opacity: 0, display: 'none', duration: .05 }, 3.7)
+      tl.to('.glitch2', { opacity: 1, duration: .05 }, 3.7)
+
+      tl.to('.glitch2', { opacity: 0, duration: .05 }, 3.8)
+      tl.to('.glitch3', { opacity: 1, duration: .05 }, 3.8)
+      
+      tl.to('.glitch3', { opacity: 0, duration: .05 }, 3.85)
+      tl.to('.glitch1', { opacity: 1, duration: .05 }, 3.85)
+
+      tl.to('.glitch1', { opacity: 0, duration: .05 }, 3.9)
+      tl.to('.glitch2', { opacity: 1, duration: .05 }, 3.9)
+
+      tl.to('.glitch2', { opacity: 0, duration: .05 }, 3.95)
+      tl.to('.glitch3', { opacity: 1, duration: .05 }, 3.95)      
+      
+      tl.to('.glitch3', { opacity: 0, duration: .05 }, 4)
 
     },
     { scope: container }
   )
 
-  setTimeout(() => {
-    showComponent('presentation')
-  }, 7000)
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setCurrentComponent('Clickme')
+    }, 6000)
+
+    return () => clearTimeout(timeoutId)
+  }, [])
+  
 
   return (
     <div className='flex justify-center items-center' ref={container}>
-      <div className='box flex justify-center items-center w-[10em] gap-5 '>
-        <h1 className='v opacity-0 font-extrabold text-[20px] text-white select-none'>v</h1>
-        <h1 className='o opacity-0 font-extrabold text-[20px] text-white select-none'>o</h1>
-        <h1 className='u opacity-0 font-extrabold text-[20px] text-white select-none'>u</h1>
-        <h1 className='s opacity-0 font-extrabold text-[20px] text-white select-none'>s</h1>
-        <h1 className='s2 opacity-0 font-extrabold text-[20px] text-white select-none'>s</h1>
-        <h1 className='i opacity-0 font-extrabold text-[20px] text-white select-none'>i</h1>
-      </div>
-      <div className='shadow absolute w-[20em] h-[2em] bg-gradient-to-t from-black to-transparent '></div>
+      <Logotype className='logotype opacity-0 absolute ' />
+      <Glitch1 className='glitch1 opacity-0 absolute ' />
+      <Glitch2 className='glitch2 opacity-0 absolute ' />
+      <Glitch3 className='glitch3 opacity-0 absolute ' />
     </div>
   )
 }
