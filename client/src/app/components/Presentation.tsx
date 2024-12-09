@@ -7,7 +7,8 @@ import { StepComponentProps } from "../types/interfaces"
 const Presentation = ({ setCurrentComponent }: StepComponentProps) => {
 
   const timeline: Component[]  = [
-    { name: 'Part1', component: Part1, input: 0, output: 3 },
+    { name: 'Part1', component: Part1, input: 0 },
+    { name: 'Part2', component: Part2, input: 2.35 },
   ]
   
   return (

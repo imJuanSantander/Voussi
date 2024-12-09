@@ -6,6 +6,8 @@ import Clickme from './components/Clickme'
 import Timeline from './resources/Timeline'
 import Steplist from './resources/Steplist'
 import { StepComponent } from './types/interfaces'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 const page = () => {
 
@@ -13,13 +15,18 @@ const page = () => {
 
   const components: StepComponent[] = [
     // { name: 'Intro', component: Intro },
-    { name: 'Clickme', component: Clickme },
-    // { name: 'Presentation', component: Presentation },
+    // { name: 'Clickme', component: Clickme },
+    { name: 'Presentation', component: Presentation },
   ]
+
+  useGSAP(() => {
+    gsap.fromTo('.task', { y: '3em' }, { opacity: 1, duration: 2, y: 0, ease: 'power4.out' })
+    
+  }, [container])
 
   return (
     <div ref={container} className='w-full h-screen flex justify-center items-center'>
-      <div className='w-[320px] h-screen text-[17px] flex justify-center items-center relative '>
+      <div className='w-[320px] h-screen text-[1rem] flex justify-center items-center relative '>
         <Steplist steplist={components} />
       </div>
     </div>

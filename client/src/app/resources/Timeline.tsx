@@ -17,15 +17,6 @@ const Timeline = ({ timeline }: Props) => {
       }, input * 1000)
 
       return () => clearTimeout(timeoutId)
-    }) 
-
-    // Remove a component from timeline
-    timeline.forEach(({ name, output }) => {
-      const timeoutId = setTimeout(() => {
-        setActiveComponents((prevActive) => prevActive.filter((comp) => comp !== name))
-      }, output * 1000)
-
-      return () => clearTimeout(timeoutId)
     })
   }, [])
 

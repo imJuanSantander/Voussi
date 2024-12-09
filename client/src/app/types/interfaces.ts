@@ -2,7 +2,6 @@ export interface Component {
   name: string
   component: React.ComponentType
   input: number
-  output: number
 }
 
 export interface StepComponent {
