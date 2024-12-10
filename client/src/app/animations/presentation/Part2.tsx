@@ -31,21 +31,23 @@ const Part2 = () => {
       tl.to('.box2', { opacity: 1, duration: 1.5 }, .6)
 
       // Team icon's white shadow appearing
-      tl.to('.shadow', { opacity: 1, duration: 1 }, 0)
+      tl.to('.shadow', { opacity: 1, duration: .8 }, 0)
       
       // "team" text's white shadow
       tl.to('.team', { opacity: 1, duration: 1.5 }, .6)
-      tl.to('.shadow2', { opacity: 1, duration: 1.5 }, .5)
+      tl.to('.shadow2', { opacity: 1, duration: 1.5 }, .4)
       
       // "We are a" disappearing after moved to left
       tl.to('.box', { opacity: 0, duration: 3 }, .5)
       
       // Everything moving up to disappear
-      tl.to('.part2', { y: '-8rem', scale: .9, opacity: .5, duration: 5, ease: 'shoot3' }, 0)
+      tl.to('.part2', { y: '-8rem', scale: .9, opacity: .5, duration: 4, ease: 'shoot3' }, 0)
 
       // When everything has been moved up, then remove shadow
-      tl.to('.shadow', { opacity: 0, duration: 1 }, 1.75)
-      tl.to('.shadow2', { opacity: 0, duration: 1.5 }, 1.75)
+      tl.to('.shadow', { opacity: 0, duration: 1 }, 1.5)
+      tl.to('.shadow2', { opacity: 0, duration: 1.5 }, 1.5)
+
+      tl.to('.part2', { opacity: 0, display: 'none', duration: .5, y: '-14rem', ease: 'power4.inOut' }, 1.98)
 
     },
     { scope: container }
